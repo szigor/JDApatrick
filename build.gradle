@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://m2.dv8tion.net/releases'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation 'junit:junit:4.13.2'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.0.1-jre'
+
+    implementation 'net.dv8tion:JDA:5.0.0-alpha.18'
+}
+
+task stage(dependsOn: ['build','shadowJar', 'clean', 'test'])
+build.mustRunAfter clean
+build.mustRunAfter test
+
+jar {
+    manifest{
+        attributes 'Class-Path': '/libs/JDApatryk-all.jar', 'Main-Class': 'me.igor.Bot'
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'

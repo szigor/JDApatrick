@@ -1,0 +1,1 @@
+worker: java -jar build/libs/JDApatryk-all.jar

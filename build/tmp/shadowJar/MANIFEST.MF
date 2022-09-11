@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: /libs/JDApatryk-all.jar
+Main-Class: me.igor.Bot
+
